@@ -1,0 +1,43 @@
+{
+  "name": "nestjs-sdd-api-template",
+  "version": "0.1.0",
+  "private": true,
+  "packageManager": "pnpm@11.5.0",
+  "engines": {
+    "node": ">=24.14.0"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "start": "node dist/main.js",
+    "dev": "tsx watch src/main.ts",
+    "format:check": "prettier --check 'src/**/*.ts' 'test/**/*.ts' 'scripts/**/*.mjs'",
+    "format": "prettier --write 'src/**/*.ts' 'test/**/*.ts' 'scripts/**/*.mjs'",
+    "arch": "node scripts/archcheck.mjs",
+    "test": "vitest run test/application.spec.ts test/http.spec.ts",
+    "coverage": "vitest run test/application.spec.ts test/http.spec.ts --coverage",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "security": "pnpm audit --audit-level high --prod"
+  },
+  "dependencies": {
+    "@nestjs/common": "12.1.1",
+    "@nestjs/core": "12.1.1",
+    "@nestjs/platform-express": "12.1.1",
+    "pg": "8.23.0",
+    "reflect-metadata": "0.2.2",
+    "rxjs": "7.8.2"
+  },
+  "devDependencies": {
+    "@nestjs/testing": "12.1.1",
+    "@types/node": "24.10.4",
+    "@types/express": "5.0.5",
+    "@types/pg": "8.15.6",
+    "@types/supertest": "6.0.3",
+    "@vitest/coverage-v8": "5.0.2",
+    "prettier": "3.6.2",
+    "supertest": "7.1.4",
+    "tsx": "4.20.6",
+    "typescript": "6.0.2",
+    "vitest": "5.0.2"
+  },
+  "type": "module"
+}
