@@ -7,7 +7,8 @@ A small NestJS service skeleton with spec-driven development, ports and adapters
 Requires Node.js 24.14+, pnpm 11.5+, Python 3, PostgreSQL 16+ (Docker Compose is included), `psql` for remote migrations (local Docker includes it), and Git.
 
 ```sh
-git clone git@github.com:raulalmeidatarazona/nestjs-sdd-api-template.git my-service
+# First use GitHub's "Use this template" button to create YOUR_ORG/my-service.
+git clone git@github.com:YOUR_ORG/my-service.git
 cd my-service
 pnpm pkg set name=my-service
 pnpm install --lockfile-only
@@ -20,11 +21,13 @@ make check
 make run
 ```
 
-Rename the package and repository, replace the sample API key, and amend the constitution before business work. `make bootstrap` installs versioned hooks in this clone. Use GitHub **Use this template** when available.
+Rename the package, replace the sample API key, and amend the constitution before business work. `make bootstrap` installs versioned hooks in this clone. If you clone this source repository directly, create a new GitHub repository and change `origin` to its URL before pushing.
 
 ```sh
 set -a; . ./.env; set +a
-curl -sS -H "Authorization: Bearer $API_KEY"   -H 'Idempotency-Key: demo-1' -H 'Content-Type: application/json'   -d '{"name":"example"}' http://localhost:3000/v1/jobs
+curl -sS -H "Authorization: Bearer $API_KEY" \
+  -H 'Idempotency-Key: demo-1' -H 'Content-Type: application/json' \
+  -d '{"name":"example"}' http://localhost:3000/v1/jobs
 curl -sS http://localhost:3000/live
 curl -sS http://localhost:3000/ready
 ```
@@ -43,6 +46,6 @@ The app reads environment variables; `make run` loads `.env` locally. In develop
 - `make fast`: formatting, architecture, SDD, secrets, typecheck, unit tests.
 - `make check`: full build/coverage, dependency audit and isolated PostgreSQL integration tests.
 - `.githooks/pre-commit` runs the fast gate; `.githooks/pre-push` runs the full gate; CI repeats it.
-- Set GitHub repository as a template and protect `main`: require `quality`, PR review and no force/direct push. Enable Dependabot and secret scanning where available.
+- Protect `main` in each new GitHub repository: require `quality`, one reviewer and no force/direct push. Add a collaborator who can review PRs. Enable Dependabot and secret scanning where available. Admin settings are not inherited by repositories created from a template.
 
 See `docs/OPERATIONS.md` before production. The sample API key is a bootstrap guard, not a product authorization system.
