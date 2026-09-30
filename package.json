@@ -30,7 +30,7 @@
     "@nestjs/testing": "12.1.1",
     "@types/node": "24.10.4",
     "@types/express": "5.0.5",
-    "@types/pg": "8.15.6",
+    "@types/pg": "8.23.1",
     "@types/supertest": "6.0.3",
     "@vitest/coverage-v8": "5.0.2",
     "prettier": "3.6.2",
