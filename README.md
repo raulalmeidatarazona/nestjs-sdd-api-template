@@ -7,8 +7,10 @@ A small NestJS service skeleton with spec-driven development, ports and adapters
 Requires Node.js 24.14+, pnpm 11.5+, Python 3, PostgreSQL 16+ (Docker Compose is included), `psql` for remote migrations (local Docker includes it), and Git.
 
 ```sh
-git clone <this-repository> my-service
+git clone git@github.com:raulalmeidatarazona/nestjs-sdd-api-template.git my-service
 cd my-service
+pnpm pkg set name=my-service
+pnpm install --lockfile-only
 pnpm install --frozen-lockfile
 cp .env.example .env
 make bootstrap
