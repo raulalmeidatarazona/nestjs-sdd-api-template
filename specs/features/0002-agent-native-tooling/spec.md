@@ -14,3 +14,5 @@ Let a developer clone this NestJS template and use Codex, Claude Code, OpenCode 
 ## Constraints and dependency rationale
 
 The API has no MCP runtime dependency. `agents/mcp` is a separate Node package because the supported clients use a local JavaScript stdio server. Its exact MCP SDK and Zod versions are locked. The client package is needed to verify the protocol in tests. Agent configuration is project-local and requires a trusted checkout; no tool may expose arbitrary file reads or shell execution. Review the nested lockfile and dependency audit with any update.
+
+[TypeScript 7.0 has no compiler API](https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/), while the repository's architecture checker imports that API. Dependabot therefore ignores TypeScript major updates until the checker can be migrated to a supported API. Minor and patch updates within the current major remain eligible.
