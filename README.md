@@ -4,7 +4,7 @@ A small NestJS service skeleton with spec-driven development, ports and adapters
 
 ## Start a new service
 
-Requires Node.js 24.14+, pnpm 11.5+, Python 3, PostgreSQL 16+ (Docker Compose is included), `psql` for remote migrations (local Docker includes it), and Git.
+Requires Node.js 24.14+, pnpm 11.5+, PostgreSQL 16+ (Docker Compose is included), `psql` for remote migrations (local Docker includes it), and Git. Repository checks run in Node.js; no Python runtime is needed.
 
 ```sh
 # First use GitHub's "Use this template" button to create YOUR_ORG/my-service.
@@ -13,6 +13,7 @@ cd my-service
 pnpm pkg set name=my-service
 pnpm install --lockfile-only
 pnpm install --frozen-lockfile
+npm ci --prefix agents/mcp
 cp .env.example .env
 make bootstrap
 docker compose up -d db
@@ -36,14 +37,14 @@ The app reads environment variables; `make run` loads `.env` locally. In develop
 
 ## Work with an agent
 
-1. Read `AGENTS.md` and `docs/INDEX.md`.
+1. Read `AGENTS.md`, `docs/INDEX.md` and [the agent setup](agents/README.md).
 2. Create `specs/features/<id>/` from `specs/templates/feature/` and agree on `spec.md`.
 3. Plan slices in `plan.md`, implement one slice, record actual checks in `validation.md`.
 4. Run `make check`, review the diff and open a PR. See `docs/WORKFLOW.md` for prompt examples.
 
 ## Gates and repository setup
 
-- `make fast`: formatting, architecture, SDD, secrets, typecheck, unit tests.
+- `make fast`: formatting, architecture, SDD, secrets, typecheck, unit tests and MCP protocol test/audit.
 - `make check`: full build/coverage, dependency audit and isolated PostgreSQL integration tests.
 - `.githooks/pre-commit` runs the fast gate; `.githooks/pre-push` runs the full gate; CI repeats it.
 - Protect `main` in each new GitHub repository: require `quality`, one reviewer and no force/direct push. Add a collaborator who can review PRs. Enable Dependabot and secret scanning where available. Admin settings are not inherited by repositories created from a template.
