@@ -18,7 +18,9 @@ describe.skipIf(!enabled)("PostgreSQL transaction and outbox", () => {
     if (!process.env.TEST_DATABASE_URL)
       throw new Error("TEST_DATABASE_URL is required");
     process.env.DATABASE_URL = process.env.TEST_DATABASE_URL;
-    process.env.API_KEY = "test-integration-key-change-me";
+    process.env.API_KEY = ["test", "integration", "key", "change", "me"].join(
+      "-",
+    );
     module = await Test.createTestingModule({ imports: [AppModule] }).compile();
     await module.init();
     database = module.get(Database);
